@@ -16,9 +16,22 @@ m + geom_point(aes(x=Length, y=FL)) +
 
 plot(muensingen$fibula_scheme)
 
-b <- m + geom_bar(aes(x=fibula_scheme))
+b <- m +
+  geom_bar(aes(x=fibula_scheme,
+               fill=factor(Coils)))
 
 b
 
-b + ggtitle("Plot 2")
+factor(muensingen$Coils)
+
+m + geom_bar(aes(x=1,
+                 fill=factor(Coils)))
+
+## Bar plot with percentations
+
+r <- data.frame(prop.table(table(muensingen$Coils)))
+
+ggplot(r) + geom_bar(aes(x=1, y=Freq, fill= Var1),
+                     position = "fill",stat = "identity")
+
 
